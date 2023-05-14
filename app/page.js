@@ -1,10 +1,12 @@
 "use client";
 
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 
 import styles from "./page.module.css";
 
 export default function Home() {
+  const { data: session } = useSession();
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef(null);
 
@@ -12,9 +14,9 @@ export default function Home() {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
+      setDragging(true);
     } else if (e.type === "dragleave") {
-      setDragActive(false);
+      setDragging(false);
     }
   };
 
@@ -69,6 +71,13 @@ export default function Home() {
           ></div>
         )}
       </form>
+      {session && (
+        <>
+          <div>Welcome</div>
+          <button onClick={() => signOut()}>Sign Out</button>
+        </>
+      )}
+      {!session && <button onClick={() => signIn()}>Sign in</button>}
     </main>
   );
 }
