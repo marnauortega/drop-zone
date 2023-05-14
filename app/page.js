@@ -7,6 +7,7 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const { data: session } = useSession();
+
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef(null);
 
@@ -21,8 +22,6 @@ export default function Home() {
   };
 
   const handleDrop = (e) => {
-    console.log("dropped");
-    console.log(e);
     e.preventDefault();
     e.stopPropagation();
     setDragging(false);
@@ -42,9 +41,46 @@ export default function Home() {
     }
   };
 
-  const handleFiles = (files) => {
-    console.log("dropped");
+  const handleFiles = async (files) => {
+    const file = files[0];
+    console.log(session.accessToken);
+
+    console.log(file);
+
+    try {
+      const response = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=media", {
+        // ?uploadType=media
+        method: "POST",
+        body: file,
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // const formData = new FormData();
+    // formData.append("name", file.name);
+    // formData.append("type", file.type);
+    // formData.append("data", await file.arrayBuffer());
+
+    // try {
+    //   const response = await fetch("/api/drive", {
+    //     method: "POST",
+    //     body: formData,
+    //   });
+    //   const data = await response.json();
+    //   console.log("data", data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
+
+  if (session) console.log(session);
 
   return (
     <main className={styles.main}>
@@ -77,7 +113,7 @@ export default function Home() {
           <button onClick={() => signOut()}>Sign Out</button>
         </>
       )}
-      {!session && <button onClick={() => signIn()}>Sign in</button>}
+      {!session && <button onClick={() => signIn("google")}>Sign in</button>}
     </main>
   );
 }
