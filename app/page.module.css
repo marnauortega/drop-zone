@@ -1,5 +1,7 @@
 .form {
   width: 300px;
+  border: 1px solid red;
+  height: 300px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -7,8 +9,6 @@
 
 .label {
   display: block;
-  border: 1px solid red;
-  height: 300px;
 }
 
 .dragging {

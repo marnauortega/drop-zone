@@ -7,9 +7,9 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const { data: session } = useSession();
-
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef(null);
+  const [resultMessage, setResultMessage] = useState(null);
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -43,13 +43,8 @@ export default function Home() {
 
   const handleFiles = async (files) => {
     const file = files[0];
-    console.log(session.accessToken);
-
-    console.log(file);
-
     try {
       const response = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=media", {
-        // ?uploadType=media
         method: "POST",
         body: file,
         headers: {
@@ -58,29 +53,13 @@ export default function Home() {
       });
 
       const data = await response.json();
-      console.log(data);
+      console.log("data", data);
+      setResultMessage(`Your file ${file.name} has successfully been uploaded`);
     } catch (error) {
       console.log(error);
+      setResultMessage("There was an error on your upload. Try again");
     }
-
-    // const formData = new FormData();
-    // formData.append("name", file.name);
-    // formData.append("type", file.type);
-    // formData.append("data", await file.arrayBuffer());
-
-    // try {
-    //   const response = await fetch("/api/drive", {
-    //     method: "POST",
-    //     body: formData,
-    //   });
-    //   const data = await response.json();
-    //   console.log("data", data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
-
-  if (session) console.log(session);
 
   return (
     <main className={styles.main}>
@@ -88,6 +67,7 @@ export default function Home() {
         <label className={`${styles.label} ${dragging ? styles.dragging : ""}`} htmlFor="upload">
           Drag and drop your files here or
         </label>
+        <p>{resultMessage}</p>
         <button onClick={handleClick}>Upload</button>
         <input
           ref={inputRef}
