@@ -12,12 +12,17 @@
 
 .h1 {
   font-size: 100px;
+  max-width: 100%;
   margin: 0;
   margin-bottom: 80px;
 }
 
 .content {
-  max-width: 345px;
+  width: 345px;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 
 .content p {
@@ -37,4 +42,20 @@
   top: 50%;
   left: 1rem;
   transform: translateY(-50%);
+}
+
+/* ===========================================
+              RESPONSIVE
+=========================================== */
+
+@media (max-width: 475px) {
+  .h1 {
+    font-size: 55px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .buttonWithIcon {
+    font-size: 0.9rem;
+  }
 }
