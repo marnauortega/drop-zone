@@ -1,6 +1,6 @@
 import "./globals.css";
 import localFont from "next/font/local";
-import Provider from "./components/Provider";
+import Provider from "../components/Provider";
 
 export const helveticaNeue = localFont({
   src: [
