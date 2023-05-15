@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 
 import styles from "./page.module.css";
 import { sohneBreit } from "../layout";
+import DashedAnimation from "@/components/DashedAnimation/DashedAnimation";
 
 const UploadPage = () => {
   const { data: session } = useSession({
@@ -88,7 +89,7 @@ const UploadPage = () => {
           </header>
           <div className={styles.formWrapper}>
             <form
-              className={`${styles.form} ${dragging ? styles.dragging : ""}`}
+              className={`border ${styles.form} ${dragging ? styles.dragging : ""}`}
               onSubmit={(e) => e.preventDefault()}
               onDragEnter={handleDrag}
             >
@@ -107,6 +108,7 @@ const UploadPage = () => {
                 type="file"
                 multiple={true}
               />
+              <DashedAnimation sectors={400} dragging={dragging} />
               {dragging && (
                 <div
                   className={styles.surface}

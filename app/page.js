@@ -27,7 +27,7 @@ export default function Home() {
               onClick={() => signIn("google", { callbackUrl: "/upload" })}
               className={`button ${styles.buttonWithIcon} ${sohneBreit.className}`}
             >
-              <Image src={googleIcon} width={30} height={30} alt="" />
+              <Image src={googleIcon} width={22} height={22} alt="" />
               Login with google
             </button>
           </div>
