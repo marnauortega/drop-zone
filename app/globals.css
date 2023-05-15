@@ -16,6 +16,12 @@ body {
   padding-left: 35px;
   padding-right: 35px;
   box-sizing: border-box;
+  transition: color 0.1s ease-out, background 0.1s ease-out;
+}
+
+.button:hover {
+  color: #130f26;
+  background-color: white;
 }
 
 .border {

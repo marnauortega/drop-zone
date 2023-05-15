@@ -72,11 +72,19 @@
   z-index: 1;
 }
 
+.main .buttonWithIcon:hover {
+  background: white;
+}
+
 .buttonWithIcon img {
   position: absolute;
   top: 50%;
   left: 30px;
   transform: translateY(-50%);
+}
+
+.buttonWithIcon:hover img {
+  mix-blend-mode: difference;
 }
 
 /* ===========================================
