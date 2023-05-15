@@ -10,12 +10,10 @@ body {
   color: white;
   border: 1px solid white;
   border-radius: 8px;
-  height: 50px;
+  min-height: 50px;
   font-size: 1rem;
   cursor: pointer;
   padding-left: 35px;
   padding-right: 35px;
   box-sizing: border-box;
-  /* font-family: "sohneBreit", sans-serif;
-  font-weight: bold; */
 }

@@ -7,6 +7,8 @@
 
 .headerButton {
   height: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .formWrapper {
@@ -20,12 +22,14 @@
   border-radius: 30px;
   height: 670px;
   max-height: 62vh;
-  margin: 120px auto;
+  margin: min(10vh, 120px) auto;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .dragging {
@@ -58,4 +62,15 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 30px;
+}
+
+/* ===========================================
+              RESPONSIVE
+=========================================== */
+
+@media (max-width: 475px) {
+  .label,
+  .p {
+    font-size: 20px;
+  }
 }
