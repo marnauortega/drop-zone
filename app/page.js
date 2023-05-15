@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, optimizedAppearDataAttribute } from "framer-motion";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 import googleIcon from "@/public/google.svg";
@@ -19,10 +20,29 @@ export default function Home() {
     <>
       {!session && (
         <main className={styles.main}>
-          <p className={styles.welcome}>Welcome to</p>
-          <h1 className={`${sohneBreit.className} ${styles.h1}`}>DDROP</h1>
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0, 0, 0, 0.8] }}
+            className={styles.welcome}
+          >
+            Welcome to
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 35 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0, 0, 0, 0.8], delay: 0.5 }}
+            className={`${sohneBreit.className} ${styles.h1}`}
+          >
+            DDROP
+          </motion.h1>
           <div className={styles.contentWrapper}>
-            <div className={`border ${styles.content}`}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut", delay: 1 }}
+              className={`border ${styles.content}`}
+            >
               <p>
                 Just about the easiest way to upload files to your google drive. Login to unleash the power of the D.
               </p>
@@ -33,7 +53,7 @@ export default function Home() {
                 <Image src={googleIcon} width={22} height={22} alt="" />
                 Login with google
               </button>
-            </div>
+            </motion.div>
           </div>
         </main>
       )}
