@@ -1,6 +1,6 @@
 ![DDROP App](/public/screenshot.webp)
 
-# DDROP APP - Fundación Esplai Nuwe Hackathon
+<br/>
 
 An app to upload files to google drive built with [Next.js](https://nextjs.org/).
 
@@ -20,23 +20,21 @@ I've used the new [App router](https://nextjs.org/docs/app/building-your-applica
 
 <br/>
 
-![Animations](/public/design.png)
-
 - Redesigned screens to give the app a unique look. Here's the [figma file](<https://www.figma.com/file/oCTf5jFz0F8DZ9zEZqnaBy/Drop-Zone-(Copy)?type=design&node-id=0%3A1&t=X6XI4bPXTW9AfAOZ-1>)
 
-<br/>
+![Animations](/public/design.png)
 
-![Animations](/public/animations.webp)
+<br/>
 
 - Animations and effects. There's animations at page load and also a cool effect when dropping files, thanks to css animations and Framer Motion.
 
-<br/>
-
-![Responsive](/public/responsive.webp)
+![Animations](/public/animations.webp)
 
 <br/>
 
 - Responsive app. Adapted to all kinds of devices.
+
+![Responsive](/public/responsive.webp)
 
 <br/>
 

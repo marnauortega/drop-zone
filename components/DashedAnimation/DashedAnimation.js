@@ -5,7 +5,7 @@ const DashedAnimation = ({ sectors, dragging }) => {
     <div className={`${styles.wrapper} ${dragging ? styles.dragging : ""}`}>
       {range(sectors).map((s, index) => (
         <div
-          key={index}
+          key={s}
           className={styles.sector}
           style={{ transform: `rotate(${75 + (360 / sectors) * index}deg) skew(${(360 * 2) / sectors}deg)` }}
         ></div>

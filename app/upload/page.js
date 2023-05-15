@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 import { redirect } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -31,14 +31,14 @@ const UploadPage = () => {
     }
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     setDropped(true);
     setTimeout(() => setDropped(false), 5000);
     setDragging(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFiles(e.dataTransfer.files);
+    if (e.dataTransfer?.files[0]) {
+      await handleFiles(e.dataTransfer.files);
     }
   };
 
@@ -46,17 +46,17 @@ const UploadPage = () => {
     inputRef.current.click();
   };
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     e.preventDefault();
-    if (e.target.files && e.target.files[0]) {
-      handleFiles(e.target.files);
+    if (e.target?.files[0]) {
+      await handleFiles(e.target.files);
     }
   };
 
   const handleFiles = async (files) => {
     const file = files[0];
     try {
-      const response = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=media", {
+      await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=media", {
         method: "POST",
         body: file,
         headers: {
@@ -64,7 +64,6 @@ const UploadPage = () => {
         },
       });
 
-      const data = await response.json();
       setResultMessage(
         <motion.p
           initial={{ opacity: 0, y: 20, x: "-50%" }}

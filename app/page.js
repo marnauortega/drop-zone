@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, optimizedAppearDataAttribute } from "framer-motion";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { useSession, signIn } from "next-auth/react";
 import googleIcon from "@/public/google.svg";
 import Image from "next/image";
 import { redirect } from "next/navigation";
