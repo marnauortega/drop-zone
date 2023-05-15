@@ -3,6 +3,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 import { redirect } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 import styles from "./page.module.css";
 import { sohneBreit } from "../layout";
@@ -15,6 +16,7 @@ const UploadPage = () => {
       redirect("/");
     },
   });
+  const [dropped, setDropped] = useState(false);
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef(null);
   const [resultMessage, setResultMessage] = useState(null);
@@ -32,6 +34,8 @@ const UploadPage = () => {
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setDropped(true);
+    setTimeout(() => setDropped(false), 5000);
     setDragging(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       handleFiles(e.dataTransfer.files);
@@ -62,17 +66,29 @@ const UploadPage = () => {
 
       const data = await response.json();
       setResultMessage(
-        <p className={`${sohneBreit.className} ${styles.p}`}>
-          {`Yeay, your file ${file.name}`}
+        <motion.p
+          initial={{ opacity: 0, y: 20, x: "-50%" }}
+          animate={{ opacity: 1, y: 0, x: "-50%" }}
+          exit={{ opacity: 0, y: -20, x: "-50%" }}
+          transition={{ duration: 1, ease: [0, 0, 0, 0.8] }}
+          className={`${sohneBreit.className} ${styles.p} ${dropped ? styles.dropped : ""}`}
+        >
+          Yeay, your file <em>{file.name}</em>
           <br />
           has been uploaded!
-        </p>
+        </motion.p>
       );
     } catch (error) {
       setResultMessage(
-        <p className={`${sohneBreit.className} ${styles.p}`}>
+        <motion.p
+          initial={{ opacity: 0, y: 20, x: "-50%" }}
+          animate={{ opacity: 1, y: 0, x: "-50%" }}
+          exit={{ opacity: 0, y: -20, x: "-50%" }}
+          transition={{ duration: 1, ease: [0, 0, 0, 0.8] }}
+          className={`${sohneBreit.className} ${styles.p} ${dropped ? styles.dropped : ""}`}
+        >
           Ouch, something went wrong <br /> Try again dropping a file
-        </p>
+        </motion.p>
       );
     }
   };
@@ -93,31 +109,47 @@ const UploadPage = () => {
               onSubmit={(e) => e.preventDefault()}
               onDragEnter={handleDrag}
             >
-              <label className={`${sohneBreit.className} ${styles.label}`} htmlFor="upload">
-                {dragging ? "Drop it right here" : "Drag and drop a file here or"}
-              </label>
-              {resultMessage}
-              <button className="button" onClick={handleClick}>
-                Click here to upload
-              </button>
-              <input
-                ref={inputRef}
-                onChange={handleChange}
-                className={styles.input}
-                id="upload"
-                type="file"
-                multiple={true}
-              />
-              <DashedAnimation sectors={400} dragging={dragging} />
-              {dragging && (
-                <div
-                  className={styles.surface}
-                  onDragEnter={handleDrag}
-                  onDragLeave={handleDrag}
-                  onDragOver={handleDrag}
-                  onDrop={handleDrop}
-                ></div>
-              )}
+              <AnimatePresence initial={false} mode="wait">
+                <div key={0} className={styles.textWrapper}>
+                  {!dropped ? (
+                    <motion.label
+                      initial={{ opacity: 0, y: 20, x: "-50%" }}
+                      animate={{ opacity: 1, y: 0, x: "-50%" }}
+                      exit={{ opacity: 0, y: -20, x: "-50%" }}
+                      transition={{ duration: 1, ease: [0, 0, 0, 0.8] }}
+                      className={`${sohneBreit.className} ${styles.label}`}
+                      htmlFor="upload"
+                    >
+                      {dragging ? "Drop it right here" : "Drag and drop a file here or"}
+                    </motion.label>
+                  ) : (
+                    resultMessage
+                  )}
+                </div>
+                <button key={2} className="button" onClick={handleClick}>
+                  Click here to upload
+                </button>
+                <input
+                  key={3}
+                  ref={inputRef}
+                  onChange={handleChange}
+                  className={styles.input}
+                  id="upload"
+                  type="file"
+                  multiple={true}
+                />
+                <DashedAnimation key={4} sectors={400} dragging={dragging} />
+                {dragging && (
+                  <div
+                    key={5}
+                    className={styles.surface}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                  ></div>
+                )}
+              </AnimatePresence>
             </form>
           </div>
         </>

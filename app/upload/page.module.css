@@ -29,7 +29,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding-left: 20px;
   padding-right: 20px;
   overflow: hidden;
@@ -47,14 +46,37 @@
   background-image: none;
 }
 
+.textWrapper {
+  height: 50%;
+  width: 100%;
+  position: relative;
+}
+
 .label {
-  display: block;
   text-transform: uppercase;
   font-size: 30px;
-  margin-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
   text-align: center;
+}
+
+.p {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin: 0;
+}
+
+.label,
+.p {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .input {
@@ -70,13 +92,8 @@
   z-index: 10;
 }
 
-.p {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 30px;
-}
-
 .label,
+.p,
 .form button {
   z-index: 1;
 }
