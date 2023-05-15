@@ -5,11 +5,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 import googleIcon from "@/public/google.svg";
 import Image from "next/image";
-
-import { sohneBreit } from "./layout";
-
-import styles from "./page.module.css";
 import { redirect } from "next/navigation";
+import { sohneBreit } from "./layout";
+import styles from "./page.module.css";
 
 export default function Home() {
   const { data: session } = useSession();
