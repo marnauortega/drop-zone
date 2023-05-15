@@ -20,14 +20,12 @@ export const sohneBreit = localFont({
   ],
 });
 
-const metadata = {
-  title: "Drop zone",
-  description: "Drop zone for Fundación Esplai Hackathon",
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
+      <head>
+        <title>DDROP</title>
+      </head>
       <body className={helveticaNeue.className}>
         <Provider>{children}</Provider>
       </body>

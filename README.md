@@ -1,4 +1,4 @@
-![Crossplatfrom App]()
+![DDROP App](/public/screenshot.webp)
 
 # DDROP APP - Fundación Esplai Nuwe Hackathon
 
@@ -12,19 +12,23 @@ I've used the new [App router](https://nextjs.org/docs/app/building-your-applica
 
 ## ⚡️ Features
 
-[![video](/packages/app/assets/images/features2.png)](https://youtu.be/Le-qnIQ_8BE)
+![Animations](/public/design.png)
 
 - Redesigned screens to give the app a unique look. Here's the [figma file](<https://www.figma.com/file/oCTf5jFz0F8DZ9zEZqnaBy/Drop-Zone-(Copy)?type=design&node-id=0%3A1&t=X6XI4bPXTW9AfAOZ-1>)
 
-- Deployment to Vercel.
+![Animations](/public/animations.webp)
+
+- Animations and effects. There's animations at page load and also a cool effect when dropping files, thanks to css animations and Framer Motion.
+
+![Responsive](/public/responsive.webp)
+
+- Responsive app. Adapted to all kinds of devices.
 
 - Authentication with Next Auth. Protected Routes.
 
 - Connecting to Google Drive API. Showing result messages.
 
-- Animations
-
-- Responsive app
+- Deployment to Vercel.
 
 ## ✅ Code quality
 
