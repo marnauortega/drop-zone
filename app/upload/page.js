@@ -81,7 +81,7 @@ const UploadPage = () => {
       {session && (
         <>
           <header className={styles.header}>
-            <p className={sohneBreit.className}>Welcome, {session.user.name}</p>
+            <p className={sohneBreit.className}>Welcome, {session.user.name.split(" ")[0]}</p>
             <button className={`button ${styles.headerButton}`} onClick={() => signOut()}>
               Sign Out
             </button>
