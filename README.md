@@ -56,7 +56,7 @@ I've used the new [App router](https://nextjs.org/docs/app/building-your-applica
 
 The code has been checked with SonarCloud and it passed all tests:
 
-![Sonar Cloud Quality Test]()
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=marnauortega_drop-zone)](https://sonarcloud.io/summary/new_code?id=marnauortega_drop-zone)
 
 <br/><br/>
 
