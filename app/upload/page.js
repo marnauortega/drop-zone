@@ -2,12 +2,18 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useRef } from "react";
+import { redirect } from "next/navigation";
 
 import styles from "./page.module.css";
 import { sohneBreit } from "../layout";
 
 const UploadPage = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/");
+    },
+  });
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef(null);
   const [resultMessage, setResultMessage] = useState(null);
@@ -54,7 +60,6 @@ const UploadPage = () => {
       });
 
       const data = await response.json();
-      console.log("data", data);
       setResultMessage(
         <p className={`${sohneBreit.className} ${styles.p}`}>
           {`Yeay, your file ${file.name}`}
@@ -63,7 +68,6 @@ const UploadPage = () => {
         </p>
       );
     } catch (error) {
-      console.log(error);
       setResultMessage(
         <p className={`${sohneBreit.className} ${styles.p}`}>
           Ouch, something went wrong <br /> Try again dropping a file
@@ -75,45 +79,47 @@ const UploadPage = () => {
   return (
     <>
       {session && (
-        <header className={styles.header}>
-          <p className={sohneBreit.className}>Welcome, {session.user.name}</p>
-          <button className={`button ${styles.headerButton}`} onClick={() => signOut()}>
-            Sign Out
-          </button>
-        </header>
-      )}
-      <div className={styles.formWrapper}>
-        <form
-          className={`${styles.form} ${dragging ? styles.dragging : ""}`}
-          onSubmit={(e) => e.preventDefault()}
-          onDragEnter={handleDrag}
-        >
-          <label className={`${sohneBreit.className} ${styles.label}`} htmlFor="upload">
-            {dragging ? "Drop it right here" : "Drag and drop a file here or"}
-          </label>
-          {resultMessage}
-          <button className="button" onClick={handleClick}>
-            Click here to upload
-          </button>
-          <input
-            ref={inputRef}
-            onChange={handleChange}
-            className={styles.input}
-            id="upload"
-            type="file"
-            multiple={true}
-          />
-          {dragging && (
-            <div
-              className={styles.surface}
+        <>
+          <header className={styles.header}>
+            <p className={sohneBreit.className}>Welcome, {session.user.name}</p>
+            <button className={`button ${styles.headerButton}`} onClick={() => signOut()}>
+              Sign Out
+            </button>
+          </header>
+          <div className={styles.formWrapper}>
+            <form
+              className={`${styles.form} ${dragging ? styles.dragging : ""}`}
+              onSubmit={(e) => e.preventDefault()}
               onDragEnter={handleDrag}
-              onDragLeave={handleDrag}
-              onDragOver={handleDrag}
-              onDrop={handleDrop}
-            ></div>
-          )}
-        </form>
-      </div>
+            >
+              <label className={`${sohneBreit.className} ${styles.label}`} htmlFor="upload">
+                {dragging ? "Drop it right here" : "Drag and drop a file here or"}
+              </label>
+              {resultMessage}
+              <button className="button" onClick={handleClick}>
+                Click here to upload
+              </button>
+              <input
+                ref={inputRef}
+                onChange={handleChange}
+                className={styles.input}
+                id="upload"
+                type="file"
+                multiple={true}
+              />
+              {dragging && (
+                <div
+                  className={styles.surface}
+                  onDragEnter={handleDrag}
+                  onDragLeave={handleDrag}
+                  onDragOver={handleDrag}
+                  onDrop={handleDrop}
+                ></div>
+              )}
+            </form>
+          </div>
+        </>
+      )}
     </>
   );
 };
