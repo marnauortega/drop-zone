@@ -18,8 +18,9 @@
 
 .form {
   max-width: 1020px;
-  border: 1px dashed white;
-  transition: border 0.5s ease;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='white' stroke-width='2' stroke-dasharray='4px%2c 6px' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 30px;
+  transition: background-image 0.5s ease;
   border-radius: 30px;
   height: 670px;
   max-height: 62vh;
@@ -43,7 +44,7 @@
 }
 
 .dragging {
-  border: none;
+  background-image: none;
 }
 
 .label {
