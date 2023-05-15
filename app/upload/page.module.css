@@ -1,0 +1,29 @@
+.form {
+  width: 300px;
+  border: 1px solid red;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.label {
+  display: block;
+}
+
+.dragging {
+  border-color: black;
+}
+
+.input {
+  display: none;
+}
+
+.surface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+}

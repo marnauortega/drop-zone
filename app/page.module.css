@@ -1,29 +1,40 @@
-.form {
-  width: 300px;
-  border: 1px solid red;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome {
+  text-transform: uppercase;
+}
+
+.h1 {
+  font-size: 100px;
+  margin: 0;
+  margin-bottom: 80px;
+}
+
+.content {
+  max-width: 345px;
+}
+
+.content p {
+  margin-bottom: 30px;
+}
+
+.content > * {
+  width: 100%;
+}
+
+.buttonWithIcon {
   position: relative;
 }
 
-.label {
-  display: block;
-}
-
-.dragging {
-  border-color: black;
-}
-
-.input {
-  display: none;
-}
-
-.surface {
+.buttonWithIcon img {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: red;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
 }
