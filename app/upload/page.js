@@ -89,7 +89,7 @@ const UploadPage = () => {
           </header>
           <div className={styles.formWrapper}>
             <form
-              className={`border ${styles.form} ${dragging ? styles.dragging : ""}`}
+              className={`${styles.form} ${dragging ? styles.dragging : ""}`}
               onSubmit={(e) => e.preventDefault()}
               onDragEnter={handleDrag}
             >

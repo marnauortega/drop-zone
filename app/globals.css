@@ -17,3 +17,30 @@ body {
   padding-right: 35px;
   box-sizing: border-box;
 }
+
+.border {
+  background-image: repeating-linear-gradient(
+      0deg,
+      #716f7d,
+      #716f7d 6px,
+      transparent 6px,
+      transparent 10px,
+      #716f7d 10px
+    ),
+    repeating-linear-gradient(90deg, #716f7d, #716f7d 6px, transparent 6px, transparent 10px, #716f7d 10px),
+    repeating-linear-gradient(180deg, #716f7d, #716f7d 6px, transparent 6px, transparent 10px, #716f7d 10px),
+    repeating-linear-gradient(270deg, #716f7d, #716f7d 6px, transparent 6px, transparent 10px, #716f7d 10px);
+  background-size: 1px calc(100% + 10px), calc(100% + 10px) 1px, 1px calc(100% + 10px), calc(100% + 10px) 1px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
+  animation: borderAnimation 0.7s infinite linear;
+}
+
+@keyframes borderAnimation {
+  from {
+    background-position: 0 0, -10px 0, 100% -10px, 0 100%;
+  }
+  to {
+    background-position: 0 -10px, 0 0, 100% 0, -10px 100%;
+  }
+}

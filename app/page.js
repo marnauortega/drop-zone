@@ -21,15 +21,19 @@ export default function Home() {
         <main className={styles.main}>
           <p className={styles.welcome}>Welcome to</p>
           <h1 className={`${sohneBreit.className} ${styles.h1}`}>DDROP</h1>
-          <div className={styles.content}>
-            <p>Just about the easiest way to upload files to your google drive. Login to unleash the power of the D.</p>
-            <button
-              onClick={() => signIn("google", { callbackUrl: "/upload" })}
-              className={`button ${styles.buttonWithIcon} ${sohneBreit.className}`}
-            >
-              <Image src={googleIcon} width={22} height={22} alt="" />
-              Login with google
-            </button>
+          <div className={styles.contentWrapper}>
+            <div className={`border ${styles.content}`}>
+              <p>
+                Just about the easiest way to upload files to your google drive. Login to unleash the power of the D.
+              </p>
+              <button
+                onClick={() => signIn("google", { callbackUrl: "/upload" })}
+                className={`button ${styles.buttonWithIcon} ${sohneBreit.className}`}
+              >
+                <Image src={googleIcon} width={22} height={22} alt="" />
+                Login with google
+              </button>
+            </div>
           </div>
         </main>
       )}
