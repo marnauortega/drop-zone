@@ -13,4 +13,9 @@ body {
   height: 50px;
   font-size: 1rem;
   cursor: pointer;
+  padding-left: 35px;
+  padding-right: 35px;
+  box-sizing: border-box;
+  /* font-family: "sohneBreit", sans-serif;
+  font-weight: bold; */
 }

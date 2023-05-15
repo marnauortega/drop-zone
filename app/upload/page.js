@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 
 import styles from "./page.module.css";
+import { sohneBreit } from "../layout";
 
 const UploadPage = () => {
   const { data: session } = useSession();
@@ -54,45 +55,65 @@ const UploadPage = () => {
 
       const data = await response.json();
       console.log("data", data);
-      setResultMessage(`Your file ${file.name} has successfully been uploaded`);
+      setResultMessage(
+        <p className={`${sohneBreit.className} ${styles.p}`}>
+          {`Yeay, your file ${file.name}`}
+          <br />
+          has been uploaded!
+        </p>
+      );
     } catch (error) {
       console.log(error);
-      setResultMessage("There was an error on your upload. Try again");
+      setResultMessage(
+        <p className={`${sohneBreit.className} ${styles.p}`}>
+          Ouch, something went wrong <br /> Try again dropping a file
+        </p>
+      );
     }
   };
 
   return (
     <>
       {session && (
-        <>
-          <div>Welcome</div>
-          <button onClick={() => signOut()}>Sign Out</button>
-        </>
+        <header className={styles.header}>
+          <p className={sohneBreit.className}>Welcome, {session.user.name}</p>
+          <button className={`button ${styles.headerButton}`} onClick={() => signOut()}>
+            Sign Out
+          </button>
+        </header>
       )}
-      <form className={styles.form} onSubmit={(e) => e.preventDefault()} onDragEnter={handleDrag}>
-        <label className={`${styles.label} ${dragging ? styles.dragging : ""}`} htmlFor="upload">
-          Drag and drop your files here or
-        </label>
-        <p>{resultMessage}</p>
-        <button onClick={handleClick}>Upload</button>
-        <input
-          ref={inputRef}
-          onChange={handleChange}
-          className={styles.input}
-          id="upload"
-          type="file"
-          multiple={true}
-        />
-        {dragging && (
-          <div
-            className={styles.surface}
-            onDragEnter={handleDrag}
-            onDragLeave={handleDrag}
-            onDragOver={handleDrag}
-            onDrop={handleDrop}
-          ></div>
-        )}
-      </form>
+      <div className={styles.formWrapper}>
+        <form
+          className={`${styles.form} ${dragging ? styles.dragging : ""}`}
+          onSubmit={(e) => e.preventDefault()}
+          onDragEnter={handleDrag}
+        >
+          <label className={`${sohneBreit.className} ${styles.label}`} htmlFor="upload">
+            {dragging ? "Drop it right here" : "Drag and drop a file here or"}
+          </label>
+          {resultMessage}
+          <button className="button" onClick={handleClick}>
+            Click here to upload
+          </button>
+          <input
+            ref={inputRef}
+            onChange={handleChange}
+            className={styles.input}
+            id="upload"
+            type="file"
+            multiple={true}
+          />
+          {dragging && (
+            <div
+              className={styles.surface}
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+            ></div>
+          )}
+        </form>
+      </div>
     </>
   );
 };
