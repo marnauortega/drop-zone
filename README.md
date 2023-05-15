@@ -1,34 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Crossplatfrom App]()
 
-## Getting Started
+# DDROP APP - Fundación Esplai Nuwe Hackathon
 
-First, run the development server:
+An app to upload files to google drive built with [Next.js](https://nextjs.org/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## [Live site](https://drop-zone-fundacion-esplai.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Tools
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+I've used the new [App router](https://nextjs.org/docs/app/building-your-application/routing) from Next.js 13, as well as the new [route handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) to create API endpoints. Other tools I've used are [Next Auth](https://next-auth.js.org/) for google authentication, [Google Drive API](https://developers.google.com/drive/api/guides/about-sdk), and [Framer Motion](https://www.framer.com/motion/?utm_source=google&utm_medium=adwords&utm_campaign=TW-WW-All-GS-UA-Traffic-20190326-Brand.Bmm_&gad=1&gclid=Cj0KCQjwsIejBhDOARIsANYqkD2_HzOAPDZ4CSmgJ5CL82OktAHY3lZclR1sU3QhpFOXEWKNMLADlfMaAgUnEALw_wcB) for animations. The deployment was done with [Vercel](https://vercel.com).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## ⚡️ Features
 
-## Learn More
+[![video](/packages/app/assets/images/features2.png)](https://youtu.be/Le-qnIQ_8BE)
 
-To learn more about Next.js, take a look at the following resources:
+- Redesigned screens to give the app a unique look. Here's the [figma file](<https://www.figma.com/file/oCTf5jFz0F8DZ9zEZqnaBy/Drop-Zone-(Copy)?type=design&node-id=0%3A1&t=X6XI4bPXTW9AfAOZ-1>)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Deployment to Vercel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Authentication with Next Auth. Protected Routes.
 
-## Deploy on Vercel
+- Connecting to Google Drive API. Showing result messages.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Animations
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Responsive app
+
+## ✅ Code quality
+
+The code has been checked with SonarCloud and it passed all tests:
+
+![Sonar Cloud Quality Test]()
+
+## 🗂 Folder layout
+
+This is a regular Next 13 app, so you'll find:
+
+- The `app` directory, holding all the routes as `page.js` files. This is folder-based routing, so `/upload/page.js` can be accessed at `https://mainurl.com/upload`.
+- The `api` folder (inside `app`), which is used to generate API endpoints. Here I've employed it to handle authentication with Next Auth.
+- The `components` folder, which collects all standalone components. In this case simply a Provider for authentication.
+- The `public` folder, which contains all assets.
+
+## 🏁 Start the app
+
+To start the app and run it on a local development server, you must simply run `npm run dev`.
+
+If you want to test a production ready build, you'll have to run `npm run build` and, when that's done, `npm run start`.
+
+## 🚀 Roadmap
+
+- Allow multiple file upload
