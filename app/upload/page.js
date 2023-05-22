@@ -55,10 +55,19 @@ const UploadPage = () => {
 
   const handleFiles = async (files) => {
     const file = files[0];
+
+    const metadata = {
+      name: file.name, // Set the desired title of the file
+    };
+
+    const body = new FormData();
+    body.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
+    body.append("file", file);
+
     try {
-      await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=media", {
+      await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
         method: "POST",
-        body: file,
+        body: body,
         headers: {
           Authorization: `Bearer ${session.accessToken}`,
         },
